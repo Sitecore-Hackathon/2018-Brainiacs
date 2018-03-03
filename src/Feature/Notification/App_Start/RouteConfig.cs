@@ -1,23 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Routing;
-
-namespace Notification
+﻿namespace Notification
 {
-    public class RouteConfig
-    {
-        public static void RegisterRoutes(RouteCollection routes)
-        {
-            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+    //public class RouteConfig
+    //{
+    //    public virtual void Process(PipelineArgs args)
+    //    {
+    //        this.RegisterRoutes(RouteTable.Routes);
 
-            routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            );
-        }
-    }
+
+    //        // this.RegisterViewEngines(ViewEngines.Engines);
+    //    }
+    //    protected virtual void RegisterRoutes(RouteCollection routes)
+    //    {
+    //        routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+    //        routes.MapRoute(
+    //            name: "GetNewsListing",
+    //            url: "api/UserListing/Users",
+    //            defaults: new { controller = "Notification", action = "GetUsers", id = UrlParameter.Optional }
+    //        );
+    //    }
+    //}
 }

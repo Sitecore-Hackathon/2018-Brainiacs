@@ -8,7 +8,7 @@ namespace Notification.Repositories
 {
     public interface INotificationRepository
     {
-        Guid DataSourceId { get; }
+        Guid DataSourceId { get; set; }
         Item GetDatasource();
         List<User> GetUser(ID id);
         List<User> GetUsers();

@@ -1,4 +1,5 @@
-﻿using Notification.Models;
+﻿using Notification.Core.Extensions;
+using Notification.Models;
 using Sitecore.Data;
 using Sitecore.Data.Items;
 using Sitecore.Mvc.Presentation;
@@ -10,11 +11,16 @@ namespace Notification.Repositories
 {
     public class NotificationRepository : INotificationRepository
     {
+        private Guid datasourceId;
         public Guid DataSourceId
         {
             get
             {
                 return GetDatasource() != null ? GetDatasource().ID.Guid : Guid.Empty;
+            }
+            set
+            {
+                datasourceId = value;
             }
         }
         public Item GetDatasource()
@@ -22,15 +28,15 @@ namespace Notification.Repositories
             var dataSource = RenderingContext.Current.Rendering.DataSource;
             if (dataSource != null)
             {
-                var items = Sitecore.Context.Database.GetItem(dataSource);
-                if (items != null)
+                var item = Sitecore.Context.Database.GetItem(dataSource);
+                if (item != null)
                 {
-                    return items;
+                    DataSourceId = item.ID.Guid;
+                    return item;
                 }
             }
             return null;
         }
-
         public List<User> GetUsers()
         {
             Item source = GetDatasource();
@@ -40,6 +46,14 @@ namespace Notification.Repositories
                 foreach (Item item in source.Children)
                 {
                     User user = new User();
+                    user.Id = item.ID.Guid;
+                    user.FirstName = item.GetItemFieldValueString("FirstName");
+                    user.LastName = item.GetItemFieldValueString("LastName");
+                    user.Email = item.GetItemFieldValueString("Email");
+                    user.FireBaseRegistrationId = item.GetItemFieldValueString("FireBaseRegistrationId");
+                    user.ProfileImageUrl = item.GetItemFieldValueString("ProfileImageUrl");
+                    user.DeviceType = item.GetItemFieldValueString("DeviceType");
+                    user.Group = item.GetItemFieldValueString("Group");
 
                     Items.Add(user);
                 }
@@ -58,6 +72,14 @@ namespace Notification.Repositories
                 foreach (Item item in source.Children)
                 {
                     User user = new User();
+                    user.Id = item.ID.Guid;
+                    user.FirstName = item.GetItemFieldValueString("FirstName");
+                    user.LastName = item.GetItemFieldValueString("LastName");
+                    user.Email = item.GetItemFieldValueString("Email");
+                    user.FireBaseRegistrationId = item.GetItemFieldValueString("FireBaseRegistrationId");
+                    user.ProfileImageUrl = item.GetItemFieldValueString("ProfileImageUrl");
+                    user.DeviceType = item.GetItemFieldValueString("DeviceType");
+                    user.Group = item.GetItemFieldValueString("Group");
 
                     Items.Add(user);
                 }
