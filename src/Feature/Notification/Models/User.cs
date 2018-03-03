@@ -12,5 +12,6 @@ namespace Notification.Models
         public string ProfileImageUrl { get; set; }
         public string DeviceType { get; set; }
         public string Group { get; set; }
+        public string Date { get; set; }
     }
 }
