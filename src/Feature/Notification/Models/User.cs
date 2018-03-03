@@ -13,5 +13,6 @@ namespace Notification.Models
         public string DeviceType { get; set; }
         public string Group { get; set; }
         public string Date { get; set; }
+        public string Status { get; set; }
     }
 }
